@@ -1,48 +1,20 @@
--- Damn, you found me
--- If you're reading this DM me on v3rmillion telling me you're reading this
-
---ok script time
-
-
-local timetime = math.random(0,0.4)
-wait(timetime)
 -- menu key
 local Config = {
     WindowName = "TamHook - Prison Life: Remastered",
-	-- menu color
 	Color = Color3.fromRGB(83,158,190),
-    -- menu keybind
 	Keybind = Enum.KeyCode.RightShift
 }
--- ui lib loadstring
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/tammmmmm/0/main/%E6%89%98%E6%9E%B6.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/soapware/UI/main/bracket%20v3/main.lua"))()
 local Window = Library:CreateWindow(Config, game:GetService("CoreGui"))
---thing
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "TamHook Loaded";
-	Text = "Why did I recode this script";
-	Icon = "http://www.roblox.com/asset/?id=9671571664";
-	Duration = 7;
-})
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Right Shift To Toggle UI";
-	Text = "Like you didn't already know";
-	Button1 = "ok"
-})
-
 ---tabs--------------------------------------
----------------------------------------------
 local Tab1 = Window:CreateTab("Main")
 local Tab2 = Window:CreateTab("Settings")
----------------------------------------------
 local Section1 = Tab1:CreateSection("Teleports")
 local Section2 = Tab1:CreateSection("Tools")
 local Section3 = Tab2:CreateSection("Menu")
 local Section4 = Tab2:CreateSection("Credits")
----------------------------------------------
 local StarterGui = game:GetService("StarterGui")
 local bindable = Instance.new("BindableFunction")
-
 --tp function
 function goto(v1,v2,v3)
     local plr = game.Players.LocalPlayer
@@ -58,7 +30,6 @@ function goto(v1,v2,v3)
     wait(0.8)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v1,v2,v3)
 end
-
 -- teleport ----------------------------------------------------------------------------------------------------------
 local Button1 = Section1:CreateButton("Armory", function()
 	goto(885, -135, 50)
@@ -113,10 +84,38 @@ local Button18 = Section1:CreateButton("Casino", function()
     goto(-372, -185, -478)
 end)
 
-
+local Button23 = Section2:CreateButton("Escape & Reset", function()
+    local plr = game.Players.LocalPlayer
+    local chara = plr.Character
+    if chara:FindFirstChildOfClass("Humanoid") then chara:FindFirstChildOfClass("Humanoid"):ChangeState(15) end
+    chara:ClearAllChildren()
+    local newChar = Instance.new("Model")
+    newChar.Parent = workspace
+    plr.Character = newChar
+    wait()
+    plr.Character = chara
+    newChar:Destroy()
+    wait(0.8)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(991, -114, -137)
+    game.Players.LocalPlayer.Character.Humanoid:MoveTo(Vector3.new(999, -139, -146))
+    wait(5)
+    game.Players.LocalPlayer.Character.Humanoid:MoveTo(Vector3.new(991, -155, -239))
+    wait(7)
+    game:GetService("StarterGui"):SetCore("SendNotification",{
+        Title = "You Escaped";
+        Text = "go commit crime";
+        Icon = "http://www.roblox.com/asset/?id=9671571664";
+        Duration = 5;
+    })
+    wait(1)
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0 
+end)
 local Button14 = Section2:CreateButton("Reset While Ragdolled", function()
 	game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end)
+
+Button23:AddToolTip("Slow but it works I guess")
+
 Button14:AddToolTip("Allows you to reset while tazed\nor ragdolled to not get arrested")
 local Label2 = Section2:CreateLabel("Don't spam this, you might crash")
 
@@ -187,8 +186,6 @@ local Button22 = Section2:CreateButton("Load Cripware", function()
     })
 end)
 Button22:AddToolTip("Why would you do this\nKeybind is end")
-
-
 --menu settings
 Window:SetBackground("9657202096")
 Window:SetTileScale(0.1)
