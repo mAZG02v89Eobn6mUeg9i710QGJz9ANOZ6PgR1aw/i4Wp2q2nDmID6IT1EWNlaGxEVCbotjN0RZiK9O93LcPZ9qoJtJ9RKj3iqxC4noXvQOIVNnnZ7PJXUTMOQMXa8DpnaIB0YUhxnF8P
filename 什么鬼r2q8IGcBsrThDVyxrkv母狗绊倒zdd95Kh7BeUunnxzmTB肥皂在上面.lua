@@ -15,7 +15,7 @@ local Config = {
 	Keybind = Enum.KeyCode.RightShift
 }
 -- ui lib loadstring
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/tammmmmm/0/main/%E6%89%98%E6%9E%B6.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/soapware/UI/main/bracket%20v3/main.lua"))()
 local Window = Library:CreateWindow(Config, game:GetService("CoreGui"))
 --thing
 game:GetService("StarterGui"):SetCore("SendNotification",{
